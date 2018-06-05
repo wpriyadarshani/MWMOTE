@@ -32,6 +32,7 @@ class Set(object):
         self.sminf = []
         self.sbmaj = []
         self.simin = []
+        self.N_min = {}
         self.k1 = 8
         self.k2 = 3
         self.k3 = 3
@@ -139,6 +140,9 @@ class Set(object):
 
             # add to simin 
             if count_minority<=self.k3:
+                #to add to Nmin
+                neightbour = []
+
                 for row in range(3):
                     row_x = j  + (row-1)
 
@@ -151,6 +155,10 @@ class Set(object):
                             #if it is minority
                             if self.calcDistance(self.gt_image_map[col_x,row_x], self.gt_image_map[41,22]) == 0.0: 
                                 self.simin.append((col_x, row_x))
+                                neightbour.append((col_x, row_x))
+
+                #update the N_min
+                self.N_min[idx] = neightbour
 
     def removeDuplicates(self):
         cleanlist = []
@@ -196,18 +204,17 @@ class Set(object):
         return result
 
     def getSets(self):
-        return self.majority_pixel_loc, self.minority_pixel_loc, self.sminf, self.sbmaj, self.simin
+        return self.majority_pixel_loc, self.minority_pixel_loc, self.sminf, self.sbmaj, self.simin, self.N_min
 
 
-    
-
-
-
-
+# class Weight(object):
+#     def __init__(self):
+        
+        
 
 
 if __name__ == "__main__":
     s= Set("T3.png", "GT_T3.png")
     s.openImages()
     s.seperate_classes()
-    majority, minority, sminf, sbmaj, simin = s.getSets()
+    majority, minority, sminf, sbmaj, simin, N_min = s.getSets()
