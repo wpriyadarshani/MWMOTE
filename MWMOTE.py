@@ -32,8 +32,6 @@ class Set(object):
         self.sminf = []
         self.sbmaj = []
         self.simin = []
-
-
         self.k1 = 8
         self.k2 = 3
         self.k3 = 3
@@ -197,6 +195,10 @@ class Set(object):
         result = numpy.sqrt(sumation)
         return result
 
+    def getSets(self):
+        return self.majority_pixel_loc, self.minority_pixel_loc, self.sminf, self.sbmaj, self.simin
+
+
     
 
 
@@ -208,3 +210,4 @@ if __name__ == "__main__":
     s= Set("T3.png", "GT_T3.png")
     s.openImages()
     s.seperate_classes()
+    majority, minority, sminf, sbmaj, simin = s.getSets()
