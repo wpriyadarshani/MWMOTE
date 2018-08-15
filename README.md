@@ -1,3 +1,3 @@
 # MWMOTE
 
-The set class is responsible for constructing the  sets. These sets are Smaj, Smin, Sminf, Sbmaj, Simin. 
+This is the Majority Weighted Minority Oversampling Technique algorithm implementation. 
